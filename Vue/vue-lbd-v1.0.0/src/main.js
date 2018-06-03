@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-
 // LightBootstrap plugin
 import LightBootstrap from './light-bootstrap-main'
 
@@ -10,6 +9,9 @@ import routes from './routes/routes'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
+
+import axios from 'axios'
+Vue.prototype.$http = axios
 
 // configure router
 const router = new VueRouter({

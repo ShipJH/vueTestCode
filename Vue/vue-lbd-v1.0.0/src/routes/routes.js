@@ -11,6 +11,8 @@ import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
 
+import mylink from 'src/components/Dashboard/Views/MyLink.vue'
+
 const routes = [
   {
     path: '/',
@@ -56,6 +58,11 @@ const routes = [
         path: 'notifications',
         name: 'Notifications',
         component: Notifications
+      },
+      {
+        path: 'mylink',
+        name: 'mylink',
+        component: mylink
       }
     ]
   },

@@ -30,6 +30,12 @@
         <i class="nc-icon nc-bell-55"></i>
         <p>Notifications</p>
       </sidebar-link>
+      
+      <sidebar-link to="/admin/mylink">
+        <i class="nc-icon nc-pin-3"></i>
+        <p>GoMyLink</p>
+      </sidebar-link>
+    
     </side-bar>
     <div class="main-panel">
       <top-navbar></top-navbar>
