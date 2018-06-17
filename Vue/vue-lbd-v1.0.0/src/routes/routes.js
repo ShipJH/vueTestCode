@@ -12,6 +12,8 @@ import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
 
 import mylink from 'src/components/Dashboard/Views/MyLink.vue'
+import reply from 'src/components/Dashboard/Views/reply.vue'
+
 
 const routes = [
   {
@@ -63,6 +65,11 @@ const routes = [
         path: 'mylink',
         name: 'mylink',
         component: mylink
+      },
+      {
+        path: 'reply',
+        name: 'reply',
+        component: reply
       }
     ]
   },

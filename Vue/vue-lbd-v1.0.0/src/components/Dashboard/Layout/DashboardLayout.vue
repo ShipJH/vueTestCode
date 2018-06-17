@@ -35,7 +35,12 @@
         <i class="nc-icon nc-pin-3"></i>
         <p>GoMyLink</p>
       </sidebar-link>
-    
+
+      <sidebar-link to="/admin/reply">
+        <i class="nc-icon nc-pin-3"></i>
+        <p>reply</p>
+      </sidebar-link>
+        
     </side-bar>
     <div class="main-panel">
       <top-navbar></top-navbar>
