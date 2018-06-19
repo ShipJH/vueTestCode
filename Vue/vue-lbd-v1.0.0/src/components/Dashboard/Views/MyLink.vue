@@ -14,7 +14,7 @@
             <div><p>{{list.title}}</p></div>
         </div>
 
-        <input type="text" v-model="myName"/>
+        <input type="text" v-model="inputMyName"/>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
     data: function () {
         return {
             boardList: []
-            ,myName:''
+            ,inputMyName:''
         }
         
     },
@@ -47,7 +47,7 @@
         },
 
         searchTerm2: function () {
-        this.$http.post("http://localhost:8080/board/4020/", {myName:this.myName} )
+        this.$http.post("http://localhost:8080/board/4020/", {myName:this.inputMyName} )
             .then((response)  =>  {
                 this.boardList = response.data.boardList;
                 //this.loading = false;
