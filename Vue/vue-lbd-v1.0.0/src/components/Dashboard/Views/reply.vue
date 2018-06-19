@@ -12,7 +12,7 @@
                 <td>댓글그룹번호</td>
                 <td>댓글유효성여부</td>
             </tr>
-            <tr v-for="reply in replys" v-bind:key="reply.replyNo">
+            <tr v-for="reply in replys" :key="reply.replyNo">
                 <td>{{ reply.replyNo }}</td>
                 <td>{{ reply.boardNo }}</td>
                 <td>{{ reply.content }}</td>
@@ -44,7 +44,7 @@
         this.$http.get("http://localhost:8080/board/4020")
             .then((response)  =>  {
                 //this.loading = false;
-                this.replys = response.data;
+                this.replys = response.data.replyList;
             }, (error)  =>  {
                 this.loading = false;
             })
