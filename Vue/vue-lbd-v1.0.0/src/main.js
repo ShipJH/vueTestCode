@@ -13,6 +13,8 @@ Vue.use(LightBootstrap)
 import axios from 'axios'
 Vue.prototype.$http = axios
 
+Vue.prototype.$appUrl = 'http://localhost:8080'
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes

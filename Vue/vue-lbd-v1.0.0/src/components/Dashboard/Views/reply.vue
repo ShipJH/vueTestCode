@@ -42,7 +42,7 @@
     methods: {
         replyData: function () {
             //this.linkMsg = "bye"
-        this.$http.get("http://localhost:8080/board/4020")
+        this.$http.get("http://localhost:8080/board/4020/")
             .then((response)  =>  {
                 //this.loading = false;
                 this.replys = response.data.replyList;

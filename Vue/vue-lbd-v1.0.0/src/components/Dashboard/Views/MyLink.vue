@@ -43,7 +43,7 @@
     methods: {
         findByBoardList: function () {
             //this.linkMsg = "bye"
-        this.$http.get("http://localhost:8080/board/4010/")
+        this.$http.get(this.$appUrl+"/board/4010/")
             .then((response)  =>  {
                 this.boardList = response.data.boardList;
                 //this.loading = false;
