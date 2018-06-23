@@ -4,34 +4,35 @@
       <div class="row">
         
         <div id="app1" class="typo-line">
-        <table border="1">
-            <tr>
-                <td>댓글번호</td>
-                <td>게시글번호</td>
-                <td>댓글내용</td>
-                <td>댓글그룹번호</td>
-                <td>댓글유효성여부</td>
-            </tr>
-            <tr v-for="reply in replys" :key="reply.replyNo">
-                <td>{{ reply.replyNo }}</td>
-                <td>{{ reply.boardNo }}</td>
-                <td>{{ reply.content }}</td>
-                <td>{{ reply.replyGroup }}</td>
-                <td>{{ reply.useYn }}</td>
-            </tr>
-        </table>
+        <input type="text" v-model="test.content"/>
+        <button v-on:click="replyInsert">댓글작성</button>
+        <ul v-for="(reply,index) in replys" :key="reply.replyNo">
+            <li>{{ reply.replyNo }} , {{ reply.boardNo }} , {{ reply.content }} , {{ reply.replyGroup }} , {{ reply.useYn }} , <input type="button" value="댓글작성2" v-on:click="add(index, reply.replyNo)"/>
+             <div v-bind:id="'reply'+reply.replyNo"></div>
+            </li>
+        </ul>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script>
 
+<script>
+  import test from './UserProfile/test.vue'
+  import test1 from './UserProfile/test1.vue'
   export default {
+    components:{
+        'test':test,
+        'test1':''
+    },
     name: 'app1',
     data(){
         return{
-        replys:[]
+        replys:[],
+        test:{},
+        a:{},
+        component: 'test1',
+        aa: {}
         }
 
     },
@@ -48,10 +49,31 @@
             }, (error)  =>  {
                 this.loading = false;
             })
-        }
+        },
+       replyInsert: function () {
+       this.$http.post("http://localhost:8080/board/4021/", this.test )
+           .then((response)  =>  {
+               //this.boardList = response.data.replyList;
+               //this.loading = false;
+               //this.linkMsg = response.data.testValue;
+               this.replyData();
+           }, (error)  =>  {
+               this.loading = false;
+           })
+
+         
+       },
+       replyReset: function(id) {
+           var test =document.getElementById(id);
+           test.innerHTML="";
+       },
+       add: function(no, replyNo){
+           var aa = 'reply'+replyNo;
+           var test =document.getElementById(aa);
+           test.innerHTML="<input type='text'/><button onClick='replyReset("+aa+")'>취소</button><button>등록</button>";
+       }
     }
   }
-
 </script>
 <style>
 
