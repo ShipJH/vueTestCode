@@ -13,7 +13,8 @@ import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
 
 import mylink from 'src/components/Dashboard/Views/MyLink.vue'
 import reply from 'src/components/Dashboard/Views/reply.vue'
-
+import boardDetail from 'src/components/Dashboard/Views/boardDetail.vue'
+import detailView from 'src/components/Dashboard/Views/detailView.vue'
 
 const routes = [
   {
@@ -70,7 +71,18 @@ const routes = [
         path: 'reply',
         name: 'reply',
         component: reply
+      },
+      {
+        path: 'boardDetail',
+        name: 'boardDetail',
+        component: boardDetail
+      },
+      {
+        path: 'detailView',
+        name: 'detailView',
+        component: detailView
       }
+      
     ]
   },
   { path: '*', component: NotFound }

@@ -9,16 +9,14 @@
 
         <table>
             <tr>
-                <th>No</th>
                 <th>제목</th>
                 <th>등록자</th>
                 <th>등록일자</th>
             </tr>
-            <tr v-for="(list, index) in boardList" :key="list.boardNo">
-                <td>{{ index + 1 }}</td>
-                <td><a v-on:click="goDetail(list.boardNo)">{{ list.title }}</a></td>
-                <td>{{ list.regUser }}</td>
-                <td>{{ list.regDate }}</td>
+            <tr>
+                <td>{{ boardDetail.title }}</td>
+                <td>{{ boardDetail.regUser }}</td>
+                <td>{{ boardDetail.regDate }}</td>
             </tr>
         </table>
         <!-- <input type="text" v-model="inputMyName"/> -->
@@ -32,7 +30,7 @@
     name: 'app1',
     data: function () {
         return {
-            boardList: []
+            boardDetail: []
             // ,inputMyName:''
         }
         
@@ -43,9 +41,9 @@
     methods: {
         findByBoardList: function () {
             //this.linkMsg = "bye"
-        this.$http.get(this.$appUrl+"/board/4010/")
+        this.$http.get(this.$appUrl+"/board/4012/"+this.$route.query.boardNo)
             .then((response)  =>  {
-                this.boardList = response.data.boardList;
+                this.boardDetail = response.data;
                 //this.loading = false;
                 //this.linkMsg = response.data.testValue;
                 
@@ -54,10 +52,6 @@
             })
 
           
-        }
-        ,
-        goDetail: function(no) {
-            this.$router.push({name: 'detailView', query: { boardNo: no}});
         }
     }
   }

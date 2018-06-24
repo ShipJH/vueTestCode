@@ -11,6 +11,7 @@
              <div v-bind:id="'reply'+reply.replyNo"></div>
             </li>
         </ul>
+        <test1/>
         </div>
       </div>
     </div>
@@ -23,7 +24,7 @@
   export default {
     components:{
         'test':test,
-        'test1':''
+        'test1':test1
     },
     name: 'app1',
     data(){
