@@ -18,7 +18,7 @@
                              </div>
                        </div>
                       <div class="user-comment-desc p-1 pl-2">
-                          <a class="m-0 mr-2" @click.prevent="replyInsertForm(reply.replyNo)">comment</a>
+                          <a href="#" class="m-0 mr-2" @click.prevent="replyInsertForm(reply.replyNo)">comment</a>
                       </div>  
                   </div>
                 </div>
