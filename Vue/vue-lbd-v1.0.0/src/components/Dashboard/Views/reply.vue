@@ -11,7 +11,6 @@
              <div v-bind:id="'reply'+reply.replyNo"></div>
             </li>
         </ul>
-        <test1/>
         </div>
       </div>
     </div>
@@ -19,32 +18,27 @@
 </template>
 
 <script>
-  import test from './UserProfile/test.vue'
-  import test1 from './UserProfile/test1.vue'
   export default {
-    components:{
-        'test':test,
-        'test1':test1
-    },
+    props: [
+    'bno'
+    ],
     name: 'app1',
     data(){
         return{
         replys:[],
         test:{},
         a:{},
-        component: 'test1',
         aa: {}
         }
 
     },
     created: function(){
-            this.replyData();
-            console.log(this.$route.query.boardNo);
+            this.replyData(this.bno);
     },
     methods: {
-        replyData: function () {
+        replyData: function (no) {
             //this.linkMsg = "bye"
-        this.$http.get("http://localhost:8080/board/4020/")
+        this.$http.get("http://localhost:8080/board/4020/" + no)
             .then((response)  =>  {
                 //this.loading = false;
                 this.replys = response.data.replyList;
