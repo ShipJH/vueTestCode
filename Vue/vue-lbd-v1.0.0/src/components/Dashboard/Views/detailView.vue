@@ -1,6 +1,6 @@
 <template>
         <div id="app1" class="">
-              
+              <board-detail :bno="boardNo"/>
               <reply/>
         </div>
 </template>
@@ -16,7 +16,8 @@
     data: function () {
         return {
             component: 'reply',
-            component: 'boardDetail'
+            component: 'boardDetail',
+            boardNo: this.$route.query.boardNo
         }
         
     }

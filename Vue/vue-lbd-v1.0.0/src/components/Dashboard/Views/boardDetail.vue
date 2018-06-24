@@ -28,6 +28,9 @@
 
   export default {
     name: 'app1',
+    props: [
+    'bno'
+    ],
     data: function () {
         return {
             boardDetail: []
@@ -36,12 +39,12 @@
         
     },
     created: function(){
-            this.findByBoardList();
+            this.findByBoardList(this.bno);
     },
     methods: {
-        findByBoardList: function () {
+        findByBoardList: function (no) {
             //this.linkMsg = "bye"
-        this.$http.get(this.$appUrl+"/board/4012/"+this.$route.query.boardNo)
+        this.$http.get(this.$appUrl+"/board/4012/" + no)
             .then((response)  =>  {
                 this.boardDetail = response.data;
                 //this.loading = false;
