@@ -38,6 +38,7 @@
     },
     created: function(){
             this.replyData();
+            console.log(this.$route.query.boardNo);
     },
     methods: {
         replyData: function () {

@@ -56,9 +56,8 @@
           
         }
         ,
-        goDetail: function(No) {
-            alert(No);
-            this.$router.push({name: 'reply', params: { foo: "bar"}});
+        goDetail: function(no) {
+            this.$router.push({name: 'reply', query: { boardNo: no}});
         }
     }
   }
