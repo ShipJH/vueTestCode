@@ -23,7 +23,7 @@
                   </div>
                 </div>
             </li>
-            <div class="test" v-bind:id="'reply'+reply.replyNo">
+            <div class="replyInsertForm" v-bind:id="'reply'+reply.replyNo">
             <br>
             <div class="row">
               <div class="col-lg-10 col-10">
@@ -50,9 +50,7 @@
     data(){
         return{
         replys:[],
-        replyContent:{boardNo: this.bno},
-        a:{},
-        aa: {}
+        replyContent:{boardNo: this.bno}
         }
 
     },
@@ -125,7 +123,6 @@
 .user-comment-desc p{
 	font-size: 12px;
 	display: inline-block;
-	/* float: left; */
 }
 .send-icon i{
 	font-size: 20px;
@@ -136,7 +133,7 @@
 	height: 35px;
 	width: 35px;
 }
-.test{
+.replyInsertForm{
     display:none;
 }
 </style>
