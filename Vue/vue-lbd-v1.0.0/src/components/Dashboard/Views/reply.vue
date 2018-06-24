@@ -2,6 +2,15 @@
       <div class="container">
       <div class="row">
          <div class="col-lg-5 offset-lg-4 col-12 comment-main rounded">
+            <div class="row">
+              <div class="col-lg-10 col-10">
+                <input type="text" class="form-control" placeholder="write comments ..." v-model="replyContent.content">
+              </div>
+              <div class="col-lg-2 col-2 send-icon">
+                <a href="#" @click.prevent="replyInsert" target="_blank"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+              </div>
+            </div>
+            <br>
           <ul class="p-0" v-for="reply in replys" :key="reply.replyNo">
             <li>
                 <div class="row comment-box p-1 pt-3 pr-4">
