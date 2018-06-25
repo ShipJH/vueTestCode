@@ -1,7 +1,5 @@
 <template>
-      <div class="container">
-      <div class="row">
-         <div class="col-lg-5 offset-lg-4 col-12 comment-main rounded">
+         <div class="col-lg-5 col-12 comment-main rounded">
             <div class="row">
               <div class="col-lg-10 col-10">
                 <input type="text" class="form-control" placeholder="write comments ..." v-model="replyContent.content">
@@ -44,8 +42,6 @@
             </div>
             </div>
             </ul>
-        </div>
-        </div>
         </div>
   
 </template>

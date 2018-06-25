@@ -1,28 +1,15 @@
 <template>
-  <div class="content">
-    <div class="container-fluid">
-      <div class="">
-        
-        <div id="app1" class="">
-              <h1>게시판</h1>
-        </div>
-
-        <table>
-            <tr>
-                <th>제목</th>
-                <th>등록자</th>
-                <th>등록일자</th>
-            </tr>
-            <tr>
-                <td>{{ boardDetail.title }}</td>
-                <td>{{ boardDetail.regUser }}</td>
-                <td>{{ boardDetail.regDate }}</td>
-            </tr>
-        </table>
-        <!-- <input type="text" v-model="inputMyName"/> -->
-      </div>
-    </div>
-  </div>
+	<div class="main-section">  
+		<div class="content">
+				<div class="user-detail">
+					<p>{{ boardDetail.title }}</p>
+					<span>{{ boardDetail.regDate }}</span>
+				</div>		
+			<div class="comment-content">
+				<span>{{ boardDetail.content }}</span>
+			</div>
+		</div>
+	</div>
 </template>
 <script>
 
@@ -62,4 +49,23 @@
 </script>
 <style>
 
+.main-section{
+	width: 35%;
+	/* margin: 0 auto; */
+}
+.content{
+	padding:20px;
+}
+.user-detail p{
+	font-size:17px;
+	font-weight:600;
+	letter-spacing:1.5px;
+	margin:15px 0px 10px 0px; 
+}
+.user-detail span{
+	color:#a2a2a2;
+}
+.comment-content{
+	margin-top:10px;
+}
 </style>
