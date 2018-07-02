@@ -3,25 +3,39 @@
     <div class="container-fluid">
       <div class="">
         
-        <div id="app1" class="">
-              <h1>게시판</h1>
-        </div>
+        
+        <h2><i class="nc-icon nc-notes" /> Community<br/></h2>
+        <h6>Community > 자유게시판</h6>
 
-        <table>
-            <tr>
-                <th>No</th>
-                <th>제목</th>
-                <th>등록자</th>
-                <th>등록일자</th>
-            </tr>
-            <tr v-for="(list, index) in boardList" :key="list.boardNo">
-                <td>{{ index + 1 }}</td>
-                <td><a v-on:click="goDetail(list.boardNo)">{{ list.title }}</a></td>
-                <td>{{ list.regUser }}</td>
-                <td>{{ list.regDate }}</td>
-            </tr>
-        </table>
-        <!-- <input type="text" v-model="inputMyName"/> -->
+        <div class="row">
+            <div class="col-md-3">
+                셀렉트박스 들어갈 곳
+            </div>
+
+            <div class="col-md-9">
+                <input aria-describedby="addon-right addon-left" type="text" placeholder="Search" class="form-control">
+            </div>
+        </div>
+        
+
+        <div class="table-responsive">
+            <table class="table table-hover" >
+                <thead>
+                        <th>No</th>
+                        <th>제목</th>
+                        <th>등록자</th>
+                        <th>등록일자</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(list, index) in boardList" :key="list.boardNo" v-on:click="goDetail(list.boardNo)" style="cursor:pointer;">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ list.title }}</td>
+                        <td>{{ list.regUser }}</td>
+                        <td>{{ list.regDate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
       </div>
     </div>
   </div>
