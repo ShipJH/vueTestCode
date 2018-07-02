@@ -1,7 +1,6 @@
 <template>
         <div id="app1" class="">
               <board-detail :bno="boardNo"/>
-              <br/>
               <reply :bno="boardNo"/>
         </div>
 </template>

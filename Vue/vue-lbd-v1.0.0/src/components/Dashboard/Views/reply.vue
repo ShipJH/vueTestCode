@@ -1,61 +1,55 @@
 <template>
-         <div class="col-lg-5 col-12 comment-main rounded">
-            <div class="row">
-              <div class="col-lg-10 col-10">
-                <input type="text" class="form-control" placeholder="write comments ..." v-model="replyContent.content">
+          <div class="col-md-13">
+          <card>
+            <template slot="header">
+              <h5 class="title">comment</h5>
+              <br/>
+          <div class="row">
+              <div class="col-md-8">
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요." v-model="replyContent.content"/>
               </div>
-              <div class="col-lg-2 col-2 send-icon">
-                <a href="#" @click.prevent="replyInsert" target="_blank"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            <br>
-          <ul class="p-0" v-for="reply in replys" :key="reply.replyNo">
-            <li>
-                <div class="row comment-box p-1 pt-3 pr-4">
-		        <div class="col-lg-2 col-3 user-img text-center">
-                    		{{ reply.replyNo }}
-                  	</div>
-                  <div class="col-lg-10 col-9 user-comment bg-light rounded pb-1">
-                       <div class="row">
-                             <div class="col-lg-8 col-6 border-bottom pr-0">
-                                <p class="w-100 p-2 m-0">{{ reply.content }}</p>
-                             </div>
-                             <div class="col-lg-4 col-6 border-bottom">
-                                <p class="w-100 p-2 m-0"><span class="float-right"><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>01 : 00</span></p>
-                             </div>
-                       </div>
-                      <div class="user-comment-desc p-1 pl-2">
-                          <a href="#" class="m-0 mr-2" @click.prevent="replyInsertForm(reply.replyNo)">comment</a>
-                      </div>  
-                  </div>
-                </div>
-            </li>
-            <div class="replyInsertForm" v-bind:id="'reply'+reply.replyNo">
-            <br>
-            <div class="row">
-              <div class="col-lg-10 col-10">
-                <input type="text" class="form-control" placeholder="write comments ..." v-model="replyContent.content">
-              </div>
-              <div class="col-lg-2 col-2 send-icon">
-                <a href="#" @click.prevent="replyInsert" target="_blank"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            </div>
-            </ul>
+              <button @click.prevent="replyInsert" class="btn btn-info btn-fill float-right">작성</button>
+          </div>
+            </template>
+            <l-table :data="replys">
+                      <!-- :columns="replys.replyNo"> 
+               <template slot="columns"></template> -->
+              <template slot-scope="{row}">
+                <td>{{row.replyNo}}</td>
+                <td>{{row.content}}</td>
+                <td class="td-actions text-right">
+                  <button type="button" class="btn-simple btn btn-xs btn-info" v-tooltip.top-center="editTooltip">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn-simple btn btn-xs btn-danger" v-tooltip.top-center="deleteTooltip">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </td>
+              </template>
+            </l-table>
+          </card>
+
         </div>
-  
 </template>
 
 <script>
+  import Card from 'src/components/UIComponents/Cards/Card.vue'
+  import LTable from 'src/components/UIComponents/Table.vue'
   export default {
     props: [
     'bno'
     ],
+    components: {
+      Card,
+      LTable
+    },
     name: 'app1',
     data(){
         return{
         replys:[],
-        replyContent:{boardNo: this.bno}
+        replyContent:{boardNo: this.bno},
+        editTooltip: 'Add',
+        deleteTooltip: 'Remove'
         }
 
     },
@@ -99,46 +93,5 @@
   }
 </script>
 <style>
-.comment-main ul{
-	list-style: none;
-}
-.sub-cmt-img{
-	width: 55px !important;
-    height: 55px !important;
-    border-radius: 50%;
-} 
-.main-cmt-img{
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 50%;
-}
 
-.border-bottom{
-	font-size: 13px;
-	border-bottom: 1px solid #d3d3d3;
-}
-.user-comment{
-	background-color: #bae6e9 !important;
-    box-shadow: 0px 5px 8px -4px #c1c1c1;
-}
-.user-comment-desc{
-    font-size: 5px;
-	color: #a0a0a0;
-}
-.user-comment-desc p{
-	font-size: 12px;
-	display: inline-block;
-}
-.send-icon i{
-	font-size: 20px;
-	background: #d7eef0;
-	padding: 6px 5px;
-	border-radius: 50%;
-	color: #74C2E1;
-	height: 35px;
-	width: 35px;
-}
-.replyInsertForm{
-    display:none;
-}
 </style>

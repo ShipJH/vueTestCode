@@ -1,26 +1,65 @@
 <template>
-	<div class="main-section">  
-		<div class="content">
-				<div class="user-detail">
-					<p>{{ boardDetail.title }}</p>
-					<span>{{ boardDetail.regDate }}</span>
-				</div>		
-			<div class="comment-content">
-				<span>{{ boardDetail.content }}</span>
-			</div>
-		</div>
-	</div>
+   <card>
+    <h4 slot="header" class="card-title">Detail</h4>
+    <form>
+      <div class="row">
+        <div class="col-md-4">
+          <fg-input type="text"
+                    label="Title"
+                    placeholder="Username"
+                    :disabled="true"
+                    v-model="boardDetail.title">
+          </fg-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <label>content</label>
+            <textarea rows="5" class="form-control border-input"
+                      placeholder="Here can be your description"
+                      :disabled="true"
+                      style="height:250px;"
+                      v-model="boardDetail.content">
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <fg-input type="text"
+                    label="reg_date"
+                    placeholder="City"
+                    :disabled="true"
+                    v-model="boardDetail.regDate">
+          </fg-input>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-info btn-fill float-right" @click.prevent="updateProfile">
+          Update
+        </button>
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </card>
 </template>
+
 <script>
+  import Card from 'src/components/UIComponents/Cards/Card.vue'
 
   export default {
     name: 'app1',
     props: [
     'bno'
     ],
+    components: {
+      Card
+    },
     data: function () {
         return {
-            boardDetail: []
+            boardDetail: [],
             // ,inputMyName:''
         }
         
