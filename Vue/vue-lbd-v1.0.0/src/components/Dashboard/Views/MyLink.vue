@@ -30,8 +30,8 @@
                         <th>등록일자</th>
                 </thead>
                 <tbody>
-                    <tr v-for="(list, index) in boardList" :key="list.boardNo" v-on:click="goDetail(list.boardNo)" style="cursor:pointer;">
-                        <td>{{ index + 1 }}</td>
+                    <tr v-for="(list) in boardList" :key="list.boardNo" v-on:click="goDetail(list.boardNo)" style="cursor:pointer;">
+                        <td>{{ list.boardNo }}</td>
                         <td>{{ list.title }}</td>
                         <td>{{ list.regUser }}</td>
                         <td>{{ list.regDate }}</td>
