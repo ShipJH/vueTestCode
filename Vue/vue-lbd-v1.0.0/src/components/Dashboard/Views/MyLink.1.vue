@@ -38,17 +38,7 @@
                     </tr>
                 </tbody>
             </table>
-
-             <a href="#" :key="n" v-on:click="goPage(n)" v-for="n in listCnt">{{ n }} </a>
-
-             
-            
         </div>
-        
-        <a href="#" :key="n" v-on:click="goPage(n+5)"  v-for="n in 5">{{ n+5 }} </a>
-        <br/>
-        <a href="#" :key="n" v-on:click="goPage(n+10)"  v-for="n in 5">{{ n+10 }} </a>
-
       </div>
     </div>
   </div>
@@ -62,38 +52,17 @@
             boardList: [],
             searchInput:"",
             searchSelect:"",
-
-            listCnt:0,
-            pageNo:1,
-            n:11
-
-
-
+            pageNo:1
             
             // ,inputMyName:''
         }
-         
+        
     },
     created: function(){
             this.findByBoardList();
             this.searchSelect = "ALL";
     },
     methods: {
-
-        goPage: function(n){
-            console.log(n);
-            this.$http.get(this.$appUrl+"/board/4010/01/"+n+"/제")
-                .then((response)  =>  {
-                    this.boardList = response.data.boardList;
-
-                    this.listCnt = response.data.listCnt;
-                    //this.loading = false;
-                    //this.linkMsg = response.data.testValue;
-                    
-                }, (error)  =>  {
-                    this.loading = false;
-                })
-        },
 
         searchKeyUp : function(){
             this.findByBoardList();
@@ -117,8 +86,6 @@
                 this.$http.get(this.$appUrl+"/board/4010/01/1/제")
                 .then((response)  =>  {
                     this.boardList = response.data.boardList;
-
-                    this.listCnt = response.data.listCnt;
                     //this.loading = false;
                     //this.linkMsg = response.data.testValue;
                     
