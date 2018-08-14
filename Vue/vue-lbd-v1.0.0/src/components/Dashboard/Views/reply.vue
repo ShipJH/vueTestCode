@@ -93,26 +93,40 @@
             })
         },
        replyInsert: function () {
+        const notification = {
+          template: `<span>댓글 입력 성공!!</span>`
+        }
+        const notificationfalse ={
+          template: `<span>댓글 입력 실패 ㅠㅠ</span>`
+        }
        this.$http.post("http://localhost:8080/board/4021/", this.replyContent )
            .then((response)  =>  {
                //this.boardList = response.data.replyList;
                //this.loading = false;
                //this.linkMsg = response.data.testValue;
+
+               this.$notifications.notify(
+                {
+                   component: notification,
+                   horizontalAlign: 'bottom',
+                   verticalAlign: 'right',
+                   type: 'success'
+                 })
+
                this.replyData(this.bno);
            }, (error)  =>  {
+              this.$notifications.notify(
+                {
+                   component: notificationfalse,
+                   horizontalAlign: 'bottom',
+                   verticalAlign: 'right',
+                   type: 'danger'
+                 })
                this.loading = false;
            })
-        const notification = {
-          template: `<span>댓글 입력 성공!!</span>`
-        }
+        
 
-        this.$notifications.notify(
-          {
-            component: notification,
-            horizontalAlign: 'bottom',
-            verticalAlign: 'right',
-            type: 'success'
-          })
+        
          
        },
        replyInsertForm(replyNo){
