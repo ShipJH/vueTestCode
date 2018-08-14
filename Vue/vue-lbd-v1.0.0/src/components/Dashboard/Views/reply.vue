@@ -11,9 +11,37 @@
               <button @click.prevent="replyInsert" class="btn btn-info btn-fill float-right">작성</button>
           </div>
             </template>
-            <l-table :data="replys">
-                      <!-- :columns="replys.replyNo"> 
-               <template slot="columns"></template> -->
+            
+            <div class="table-responsive">
+              <table class="table table-hover" >
+                <template v-for="list in replys">
+                    <tr :key="list.replyNo">
+                        <td>{{list.replyNo}}</td>
+                        <td>{{list.content}}</td>
+                        <td class="td-actions text-right">
+                        <!-- <button type="button" class="btn-simple btn btn-xs btn-info" v-tooltip.top-center="editTooltip" v-on:click="addRow(index)"> -->
+                          <button type="button" class="btn-simple btn btn-xs btn-info" v-tooltip.top-center="editTooltip='Add'" @click="list.isReInsert = !list.isReInsert">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn-simple btn btn-xs btn-danger" v-tooltip.top-center="deleteTooltip='Remove'" v-on:click="removeRow()">
+                          <i class="fa fa-times"></i>
+                        </button>
+                        </td>
+                    </tr>
+                    <tr v-if="list.isReInsert" :key="list.replyNo">
+                       <td>
+                         <input type="text" class="form-control" placeholder="내용을 입력해주세요." v-model="replyContent.content"/>
+                       </td>
+                       <td>
+                         <!-- <button @click.prevent="replyInsert" class="btn btn-info btn-fill float-right">작성</button> -->
+                         <input type="button" value="작성" class="btn btn-info btn-fill float-right" @click="replyGroup(list.replyGroup)">
+                       </td>
+                    </tr>
+                    </template>
+              </table>
+            </div>
+
+            <!-- <l-table :data="replys">
               <template slot-scope="{row}">
                 <td>{{row.replyNo}}</td>
                 <td>{{row.content}}</td>
@@ -26,9 +54,8 @@
                   </button>
                 </td>
               </template>
-            </l-table>
+            </l-table> -->
           </card>
-
         </div>
 </template>
 
@@ -47,10 +74,8 @@
     data(){
         return{
         replys:[],
-        replyContent:{boardNo: this.bno},
-        editTooltip: 'Add',
-        deleteTooltip: 'Remove'
-        }
+        replyContent:{boardNo: this.bno}
+      }
 
     },
     created: function(){
@@ -77,7 +102,17 @@
            }, (error)  =>  {
                this.loading = false;
            })
+        const notification = {
+          template: `<span>댓글 입력 성공!!</span>`
+        }
 
+        this.$notifications.notify(
+          {
+            component: notification,
+            horizontalAlign: 'bottom',
+            verticalAlign: 'right',
+            type: 'success'
+          })
          
        },
        replyInsertForm(replyNo){
@@ -88,7 +123,15 @@
            } else {
                 form.style.display = "none";
         }
+       },
+       replyGroup : function(replyGroup){
+        //  this.replys.splice (index + 1, 0, {} );
+        alert("그룹번호 : "+replyGroup);
+       },
+       removeRow: function(index){
+         this.replys.splice(index,1);
        }
+       
     }
   }
 </script>

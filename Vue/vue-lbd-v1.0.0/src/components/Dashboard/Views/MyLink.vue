@@ -30,11 +30,12 @@
                         <th>등록일자</th>
                 </thead>
                 <tbody>
-                    <tr v-for="(list) in boardList" :key="list.boardNo" v-on:click="goDetail(list.boardNo)" style="cursor:pointer;">
+                    <tr v-for="(list, index) in boardList" :key="list.boardNo" v-on:click="goDetail(list.boardNo)" style="cursor:pointer;">
                         <td>{{ list.boardNo }}</td>
                         <td>{{ list.title }}</td>
                         <td>{{ list.regUser }}</td>
                         <td>{{ list.regDate }}</td>
+                        <td><input type="button" v-on:click="addRow(index)" value="인덱스테스트"/></td>
                     </tr>
                 </tbody>
             </table>
@@ -131,6 +132,9 @@
         ,
         goDetail: function(no) {
             this.$router.push({name: 'detailView', query: { boardNo: no}});
+        },
+        addRow(index){
+            alert(index);
         }
     }
   }
