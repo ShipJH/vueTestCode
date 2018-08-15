@@ -34,7 +34,7 @@
                        </td>
                        <td>
                          <!-- <button @click.prevent="replyInsert" class="btn btn-info btn-fill float-right">작성</button> -->
-                         <input type="button" value="작성" class="btn btn-info btn-fill float-right" @click="replyInsert(list.replyNo)">
+                         <input type="button" value="작성" class="btn btn-info btn-fill float-right" @click="replyInsert(list.replyNo, list.replyGroup)">
                        </td>
                     </tr>
                     </template>
@@ -74,7 +74,7 @@
     data(){
         return{
         replys:[],
-        replyContent:{boardNo: this.bno, replyNo: 0}
+        replyContent:{boardNo: this.bno, replyNo: 0, replyGroup: 0}
       }
 
     },
@@ -92,10 +92,11 @@
                 this.loading = false;
             })
         },
-       replyInsert: function (replyNo) {
-
+       replyInsert: function (replyNo, replyGroup) {
+         
         this.replyContent.replyNo=replyNo;
-
+        this.replyContent.replyGroup=replyGroup;
+        
         const notification = {
           template: `<span>댓글 입력 성공!!</span>`
         }
