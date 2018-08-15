@@ -8,7 +8,7 @@
               <div class="col-md-8">
                 <input type="text" class="form-control" placeholder="내용을 입력해주세요." v-model="replyContent.content"/>
               </div>
-              <button @click.prevent="replyInsert" class="btn btn-info btn-fill float-right">작성</button>
+              <button @click.prevent="replyInsert()" class="btn btn-info btn-fill float-right">작성</button>
           </div>
             </template>
             
@@ -34,7 +34,7 @@
                        </td>
                        <td>
                          <!-- <button @click.prevent="replyInsert" class="btn btn-info btn-fill float-right">작성</button> -->
-                         <input type="button" value="작성" class="btn btn-info btn-fill float-right" @click="replyGroup(list.replyGroup)">
+                         <input type="button" value="작성" class="btn btn-info btn-fill float-right" @click="replyInsert(list.replyNo)">
                        </td>
                     </tr>
                     </template>
@@ -74,7 +74,7 @@
     data(){
         return{
         replys:[],
-        replyContent:{boardNo: this.bno}
+        replyContent:{boardNo: this.bno, replyNo: 0}
       }
 
     },
@@ -92,19 +92,23 @@
                 this.loading = false;
             })
         },
-       replyInsert: function () {
+       replyInsert: function (replyNo) {
+
+        this.replyContent.replyNo=replyNo;
+
         const notification = {
           template: `<span>댓글 입력 성공!!</span>`
         }
+
         const notificationfalse ={
           template: `<span>댓글 입력 실패 ㅠㅠ</span>`
         }
+
        this.$http.post("http://localhost:8080/board/4021/", this.replyContent )
            .then((response)  =>  {
                //this.boardList = response.data.replyList;
                //this.loading = false;
                //this.linkMsg = response.data.testValue;
-
                this.$notifications.notify(
                 {
                    component: notification,
@@ -112,7 +116,6 @@
                    verticalAlign: 'right',
                    type: 'success'
                  })
-
                this.replyData(this.bno);
            }, (error)  =>  {
               this.$notifications.notify(
@@ -124,19 +127,6 @@
                  })
                this.loading = false;
            })
-        
-
-        
-         
-       },
-       replyInsertForm(replyNo){
-           var id = "reply"+replyNo;
-           var form =document.getElementById(id);
-           if (form.style.display === "none") {
-                form.style.display = "block";
-           } else {
-                form.style.display = "none";
-        }
        },
        replyGroup : function(replyGroup){
         //  this.replys.splice (index + 1, 0, {} );
